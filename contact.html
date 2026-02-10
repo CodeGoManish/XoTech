@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - XosTech</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; background: #f5f5f5; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        nav { background: #0A2540; padding: 20px; }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; }
+        .logo { color: white; font-size: 1.5rem; font-weight: bold; text-decoration: none; }
+        .nav-links { display: flex; gap: 20px; }
+        .nav-links a { color: white; text-decoration: none; }
+        .page-header { background: linear-gradient(135deg, #4A6FFF 0%, #8B5CF6 100%); color: white; padding: 100px 0; text-align: center; }
+        .contact-form { max-width: 600px; margin: 60px auto; background: white; padding: 40px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        input, textarea { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ddd; border-radius: 5px; }
+        button { background: linear-gradient(135deg, #4A6FFF 0%, #8B5CF6 100%); color: white; border: none; padding: 12px 30px; border-radius: 5px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container nav-container">
+            <a href="index.html" class="logo">NexoraTech</a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="services.html">Services</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="page-header">
+        <div class="container">
+            <h1>Contact Us</h1>
+            <p>Get in touch with our team</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="contact-form">
+            <h2>Send us a message</h2>
+            <form id="contactForm">
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <textarea placeholder="Your Message" rows="5" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

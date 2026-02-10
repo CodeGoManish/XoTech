@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services - XoTech</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+        }
+        
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #333; 
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .container { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            padding: 0 20px; 
+        }
+        
+        /* Navigation */
+        nav { 
+            background: rgba(10, 37, 64, 0.95);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+        
+        .nav-container { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+        }
+        
+        .logo { 
+            color: white; 
+            font-size: 1.8rem; 
+            font-weight: 700; 
+            text-decoration: none; 
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: transform 0.3s ease;
+        }
+        
+        .logo:hover {
+            transform: scale(1.05);
+        }
+        
+        .logo i {
+            color: #4A6FFF;
+        }
+        
+        .nav-links { 
+            display: flex; 
+            gap: 30px; 
+        }
+        
+        .nav-links a { 
+            color: white; 
+            text-decoration: none; 
+            font-weight: 500;
+            padding: 8px 0;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(135deg, #4A6FFF 0%, #8B5CF6 100%);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+        
+        .nav-links a:hover {
+            color: #4A6FFF;
+        }
+        
+        .nav-links a.active {
+            color: #4A6FFF;
+        }
+        
+        /* Page Header */
+        .page-header { 
+            background: linear-gradient(135deg, #4A6FFF 0%, #8B5CF6 100%); 
+            color: white; 
+            padding: 150px 0 100px; 
+            text-align: center; 
+            margin-top: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100"><path fill="rgba(255,255,255,0.1)" d="M0,0V100H1000V0C1000,0,800,50,500,50S0,0,0,0Z"/></svg>');
+            background-size: cover;
+            animation: wave 20s linear infinite;
+        }
+        
+        @keyframes wave {
+            0% { background-position-x: 0; }
+            100% { background-position-x: 1000px; }
+        }
+        
+        .page-header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .page-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease 0.3s forwards;
+        }
+        
+        /* Services Grid */
+        .services-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 30px; 
+            padding: 80px 0; 
+        }
+        
+        .service-card { 
+            background: white; 
+            padding: 40px 30px; 
+            border-radius: 20px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08); 
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            opacity: 0;
+            transform: translateY(50px);
+            position: relative;
+            overflow: hidden;
+            border: 2px solid transparent;
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(74, 111, 255, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .service-card:hover::before {
+            left: 100%;
+        }
+        
+        .service-card.animated {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(74, 111, 255, 0.15);
+            border-color: #4A6FFF;
+        }
+        
+        .service-icon { 
+            width: 80px; 
+            height: 80px; 
+            background: linear-gradient(135deg, #4A6FFF 0%, #8B5CF6 100%); 
+            border-radius: 20px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            color: white; 
+            font-size: 2rem; 
+            margin-bottom: 25px;
+            transition: all 0.3s ease;
+        }
+        
+        .service-card:hover .service-icon {
+            transform: scale(1.1) rotate(10deg);
+            box-shadow: 0 10px 20px rgba(74, 111, 255, 0.3);
+        }
+        
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #0A2540;
+            transition: color 0.3s ease;
+        }
+        
+        .service-card:hover h3 {
+            color: #4A6FFF;
+        }
+        
+        .service-card p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .price-tag {
+            color: #4A6FFF;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin: 15px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .price-tag i {
+            animation: pulse 2s infinite;
+        }
+        
+        .service-features {
+            list-style: none;
+            margin: 20px 0;
+        }
+        
+        .service-features li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .service-features li i {
+            color: #4A6FFF;
+        }
+        
+        .service-btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background: linear-gradient(135deg, #4A6FFF 0%, #8B5CF6 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 600;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .service-btn:hover::after {
+            left: 100%;
+        }
+        
+        .service-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(74, 111, 255, 0.3);
+        }
+        
+        /* Process Section */
+        .process-section {
+            padding: 80px 0;
+            background: rgba(255,255,255,0.5);
+            border-radius: 30px;
+            margin: 40px 0;
+        }
+        
+        .process-steps {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+            position: relative;
+        }
+        
+        .process-steps::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 10%;
+            right: 10%;
+            height: 3px;
+            background: linear-gradient(90deg, #4A6FFF, #8B5CF6);
+            z-index: 1;
+        }
+        
+        .process-step {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            flex: 1;
+        }
+        
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: white;
+            border: 3px solid #4A6FFF;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #4A6FFF;
+            margin: 0 auto 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .process-step:hover .step-number {
+            background: #4A6FFF;
+            color: white;
+            transform: scale(1.1);
+        }
+        
+        /* Footer */
+        .footer {
+            background: #0A2540;
+            color: white;
+            padding: 60px 0 20px;
+            margin-top: 80px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-links a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: #4A6FFF;
+            padding-left: 5px;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        
+        /* Floating elements */
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .floating-element {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(74, 111, 255, 0.1);
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .floating-element:nth-child(1) {
+            width: 100px;
+            height: 100px;
+            top: 20%;
+            left: 5%;
+            animation-delay: 0s;
+        }
+        
+        .floating-element:nth-child(2) {
+            width: 150px;
+            height: 150px;
+            bottom: 30%;
+            right: 10%;
+            animation-delay: 2s;
+        }
+        
+        .floating-element:nth-child(3) {
+            width: 80px;
+            height: 80px;
+            top: 60%;
+            left: 15%;
+            animation-delay: 4s;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+                padding: 40px 0;
+            }
+            
+            .process-steps {
+                flex-direction: column;
+                gap: 40px;
+            }
+            
+            .process-steps::before {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .page-header {
+                padding: 120px 0 80px;
+            }
+            
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            
+            .service-card {
+                padding: 30px 20px;
+            }
+        }
+        
+        /* Hover Effects */
+        .service-card {
+            cursor: pointer;
+        }
+        
+        .service-card:hover {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9ff 100%);
+        }
+        
+        /* Active state */
+        .service-card:active {
+            transform: translateY(-5px) scale(0.98);
+        }
+        
+        /* Loading animation */
+        @keyframes shimmer {
+            0% {
+                background-position: -1000px 0;
+            }
+            100% {
+                background-position: 1000px 0;
+            }
+        }
+        
+        .loading {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 1000px 100%;
+            animation: shimmer 2s infinite;
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Elements -->
+    <div class="floating-elements">
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+    </div>
+    
+    <!-- Navigation -->
+    <nav>
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-bolt"></i>
+                XoTech
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="services.html" class="active">Services</a>
+                <a href="contact.html">Contact</a>
+                <a href="login.html">Login</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="container">
+            <h1>Our Services</h1>
+            <p>Comprehensive technology solutions for your business growth and success</p>
+        </div>
+    </div>
+
+    <!-- Services Grid -->
+    <div class="container">
+        <div class="services-grid">
+            <!-- Web Development -->
+            <div class="service-card" data-delay="0.1">
+                <div class="service-icon"><i class="fas fa-laptop-code"></i></div>
+                <h3>Web Development</h3>
+                <p>Custom websites and web applications built with modern technologies like React, Vue.js, and Node.js.</p>
+                
+                <div class="price-tag">
+                    <i class="fas fa-tag"></i>
+                    Starting from $2,500
+                </div>
+                
+                <ul class="service-features">
+                    <li><i class="fas fa-check"></i> Responsive Design</li>
+                    <li><i class="fas fa-check"></i> SEO Optimization</li>
+                    <li><i class="fas fa-check"></i> E-commerce Integration</li>
+                    <li><i class="fas fa-check"></i> 1 Year Free Support</li>
+                </ul>
+                
+                <a href="contact.html" class="service-btn">Get Started</a>
+            </div>
+            
+            <!-- Mobile App Development -->
+            <div class="service-card" data-delay="0.2">
+                <div class="service-icon"><i class="fas fa-mobile-alt"></i></div>
+                <h3>Mobile App Development</h3>
+                <p>Native and cross-platform mobile applications for iOS and Android using React Native and Flutter.</p>
+                
+                <div class="price-tag">
+                    <i class="fas fa-tag"></i>
+                    Starting from $5,000
+                </div>
+                
+                <ul class="service-features">
+                    <li><i class="fas fa-check"></i> iOS & Android Apps</li>
+                    <li><i class="fas fa-check"></i> App Store Submission</li>
+                    <li><i class="fas fa-check"></i> Push Notifications</li>
+                    <li><i class="fas fa-check"></i> 6 Months Updates</li>
+                </ul>
+                
+                <a href="contact.html" class="service-btn">Get Started</a>
+            </div>
+            
+            <!-- UI/UX Design -->
+            <div class="service-card" data-delay="0.3">
+                <div class="service-icon"><i class="fas fa-paint-brush"></i></div>
+                <h3>UI/UX Design</h3>
+                <p>User-centered design solutions that create intuitive, engaging, and visually stunning digital experiences.</p>
+                
+                <div class="price-tag">
+                    <i class="fas fa-tag"></i>
+                    Starting from $1,500
+                </div>
+                
+                <ul class="service-features">
+                    <li><i class="fas fa-check"></i> User Research</li>
+                    <li><i class="fas fa-check"></i> Wireframing</li>
+                    <li><i class="fas fa-check"></i> Prototyping</li>
+                    <li><i class="fas fa-check"></i> Design Systems</li>
+                </ul>
+                
+                <a href="contact.html" class="service-btn">Get Started</a>
+            </div>
+            
+            <!-- AI Solutions -->
+            <div class="service-card" data-delay="0.4">
+                <div class="service-icon"><i class="fas fa-brain"></i></div>
+                <h3>AI Solutions</h3>
+                <p>Machine learning and AI systems that automate processes, provide data insights, and transform businesses.</p>
+                
+                <div class="price-tag">
+                    <i class="fas fa-tag"></i>
+                    Custom Pricing
+                </div>
+                
+                <ul class="service-features">
+                    <li><i class="fas fa-check"></i> Predictive Analytics</li>
+                    <li><i class="fas fa-check"></i> Chatbot Development</li>
+                    <li><i class="fas fa-check"></i> Computer Vision</li>
+                    <li><i class="fas fa-check"></i> NLP Solutions</li>
+                </ul>
+                
+                <a href="contact.html" class="service-btn">Get Quote</a>
+            </div>
+            
+            <!-- Cloud Solutions -->
+            <div class="service-card" data-delay="0.5">
+                <div class="service-icon"><i class="fas fa-cloud"></i></div>
+                <h3>Cloud Solutions</h3>
+                <p>Scalable cloud infrastructure and migration services using AWS, Azure, and Google Cloud Platform.</p>
+                
+                <div class="price-tag">
+                    <i class="fas fa-tag"></i>
+                    Starting from $3,000
+                </div>
+                
+                <ul class="service-features">
+                    <li><i class="fas fa-check"></i> Cloud Migration</li>
+                    <li><i class="fas fa-check"></i> Server Management</li>
+                    <li><i class="fas fa-check"></i> DevOps Services</li>
+                    <li><i class="fas fa-check"></i> 24/7 Monitoring</li>
+                </ul>
+                
+                <a href="contact.html" class="service-btn">Get Started</a>
+            </div>
+            
+            <!-- Digital Marketing -->
+            <div class="service-card" data-delay="0.6">
+                <div class="service-icon"><i class="fas fa-chart-line"></i></div>
+                <h3>Digital Marketing</h3>
+                <p>Comprehensive digital marketing strategies to boost your online presence and drive business growth.</p>
+                
+                <div class="price-tag">
+                    <i class="fas fa-tag"></i>
+                    Starting from $1,000/month
+                </div>
+                
+                <ul class="service-features">
+                    <li><i class="fas fa-check"></i> SEO Optimization</li>
+                    <li><i class="fas fa-check"></i> Social Media Marketing</li>
+                    <li><i class="fas fa-check"></i> PPC Campaigns</li>
+                    <li><i class="fas fa-check"></i> Analytics & Reporting</li>
+                </ul>
+                
+                <a href="contact.html" class="service-btn">Get Started</a>
+            </div>
+        </div>
+        
+        <!-- Process Section -->
+        <div class="process-section">
+            <div class="container">
+                <h2 style="text-align: center; margin-bottom: 20px; color: #0A2540;">Our Process</h2>
+                <p style="text-align: center; max-width: 600px; margin: 0 auto 50px; color: #666;">
+                    We follow a structured 4-step process to ensure your project's success from concept to launch.
+                </p>
+                
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <h3>Discovery</h3>
+                        <p>Requirements gathering & planning</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <h3>Design</h3>
+                        <p>UI/UX design & prototyping</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <h3>Development</h3>
+                        <p>Coding & implementation</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">4</div>
+                        <h3>Delivery</h3>
+                        <p>Testing, launch & support</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <h3 style="margin-bottom: 20px;">XoTech</h3>
+                    <p style="color: rgba(255,255,255,0.8); margin-bottom: 20px;">
+                        Building innovative technology solutions for the future.
+                    </p>
+                </div>
+                <div>
+                    <h3 style="margin-bottom: 20px;">Quick Links</h3>
+                    <div class="footer-links" style="display: flex; flex-direction: column; gap: 10px;">
+                        <a href="index.html">Home</a>
+                        <a href="about.html">About</a>
+                        <a href="services.html">Services</a>
+                        <a href="contact.html">Contact</a>
+                    </div>
+                </div>
+                <div>
+                    <h3 style="margin-bottom: 20px;">Contact Us</h3>
+                    <div style="color: rgba(255,255,255,0.8);">
+                        <p><i class="fas fa-map-marker-alt"></i> 123 Tech Street, SF</p>
+                        <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
+                        <p><i class="fas fa-envelope"></i> info@xotech.com</p>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align: center; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1);">
+                <p>&copy; 2024 XoTech. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Animation on scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const serviceCards = document.querySelectorAll('.service-card');
+            
+            // Animate cards on scroll
+            const animateOnScroll = function() {
+                serviceCards.forEach(card => {
+                    const cardPosition = card.getBoundingClientRect().top;
+                    const screenPosition = window.innerHeight / 1.2;
+                    
+                    if (cardPosition < screenPosition) {
+                        const delay = card.getAttribute('data-delay') || 0;
+                        setTimeout(() => {
+                            card.classList.add('animated');
+                        }, delay * 1000);
+                    }
+                });
+            };
+            
+            // Set initial styles
+            serviceCards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(50px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            });
+            
+            // Trigger animation on load and scroll
+            window.addEventListener('load', animateOnScroll);
+            window.addEventListener('scroll', animateOnScroll);
+            
+            // Initial animation
+            animateOnScroll();
+            
+            // Add hover sound effect (optional)
+            serviceCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-15px) scale(1.02)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(-15px)';
+                });
+            });
+            
+            // Add click effect
+            serviceCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    this.style.transform = 'translateY(-5px) scale(0.98)';
+                    setTimeout(() => {
+                        this.style.transform = 'translateY(-15px)';
+                    }, 150);
+                });
+            });
+            
+            // Floating elements animation
+            const floatingElements = document.querySelectorAll('.floating-element');
+            floatingElements.forEach((element, index) => {
+                element.style.animationDelay = `${index * 2}s`;
+            });
+        });
+    </script>
+</body>
+</html>
